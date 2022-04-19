@@ -2,6 +2,7 @@ package com.ringme.SpringbootDemo1.controller;
 
 import com.ringme.SpringbootDemo1.dao.ProductDao;
 import com.ringme.SpringbootDemo1.entity.redis.Product;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,10 +15,12 @@ import java.util.List;
 public class product {
     @Autowired
     ProductDao productDao;
+    private static Logger logger= Logger.getLogger(product.class);
 
     @PostMapping
     public ResponseEntity createProduct(@RequestBody Product product){
         String s= productDao.create(product);
+        logger.info("test log|"+s);
         return new ResponseEntity<>(s, HttpStatus.OK);
     }
 
