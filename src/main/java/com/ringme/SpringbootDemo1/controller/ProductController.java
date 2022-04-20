@@ -12,15 +12,16 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/product")
-public class product {
+public class ProductController {
     @Autowired
     ProductDao productDao;
-    private static Logger logger= Logger.getLogger(product.class);
+
+    private static Logger logger= Logger.getLogger(ProductController.class);
 
     @PostMapping
     public ResponseEntity createProduct(@RequestBody Product product){
         String s= productDao.create(product);
-        logger.info("test log|"+s);
+        logger.debug("loi "+s);
         return new ResponseEntity<>(s, HttpStatus.OK);
     }
 

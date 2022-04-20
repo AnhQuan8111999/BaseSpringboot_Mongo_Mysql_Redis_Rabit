@@ -8,15 +8,15 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public class ProductDaoImpl implements ProductDao{
+public class ProductDaoImpl implements ProductDao {
 
     @Autowired
     private RedisTemplate redisTemplate;
 
     @Override
     public String create(Product product) {
-        redisTemplate.opsForHash().put("Product",product.getId(),product);
-        return "product create";
+        redisTemplate.opsForHash().put("Product" , product.getId(), product);
+        return "product created";
     }
 
     @Override
@@ -26,12 +26,12 @@ public class ProductDaoImpl implements ProductDao{
 
     @Override
     public Product findProductById(long id) {
-        return (Product) redisTemplate.opsForHash().get("Product",id);
+        return (Product) redisTemplate.opsForHash().get("Product", id);
     }
 
     @Override
     public String deleteProduct(long id) {
-        redisTemplate.opsForHash().delete("Product",id);
+        redisTemplate.opsForHash().delete("Product", id);
         return "product removed !";
     }
 }
