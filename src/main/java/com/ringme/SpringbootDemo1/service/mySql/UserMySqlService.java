@@ -1,4 +1,4 @@
-package com.ringme.SpringbootDemo1.service;
+package com.ringme.SpringbootDemo1.service.mySql;
 
 import com.ringme.SpringbootDemo1.entity.mySql.UserMySql;
 import org.springframework.stereotype.Service;

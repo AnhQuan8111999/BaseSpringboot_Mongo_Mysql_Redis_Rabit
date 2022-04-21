@@ -21,8 +21,7 @@ public class RabbitmqController {
     public String bookOrder(@RequestBody Order order){
         OrderStatus orderStatus=new OrderStatus("process","order successfull in" ,order);
         logger.info("input:"+ orderStatus);
-//        rabbitTemplate.convertAndSend(RabbitmqConfig.EXCHANGE,RabbitmqConfig.ROUTING_KEY,"orderStatus");
-        rabbitTemplate.con
+        rabbitTemplate.convertAndSend(RabbitmqConfig.EXCHANGE,RabbitmqConfig.ROUTING_KEY,orderStatus);
         return "success !";
     }
 }

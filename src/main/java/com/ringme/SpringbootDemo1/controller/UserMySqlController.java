@@ -1,11 +1,10 @@
 package com.ringme.SpringbootDemo1.controller;
 
 import com.ringme.SpringbootDemo1.entity.mySql.UserMySql;
-import com.ringme.SpringbootDemo1.service.UserMySqlService;
+import com.ringme.SpringbootDemo1.service.mySql.UserMySqlService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

@@ -10,9 +10,9 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class RabbitmqConfig {
-    public static final String QUEUE="test_Springboot_Rabbitmq";
-    public static final String EXCHANGE="test_Springboot_Rabbitmq";
-    public static final String ROUTING_KEY="javainuse.routingkey";
+    public static final String QUEUE="test_Springboot_Rabbitmq_quanda";
+    public static final String EXCHANGE="test_Springboot_Rabbitmq_quanda";
+    public static final String ROUTING_KEY="routingkey_Of_Quan";
     @Bean
     public Queue queue(){
         return new Queue(QUEUE);

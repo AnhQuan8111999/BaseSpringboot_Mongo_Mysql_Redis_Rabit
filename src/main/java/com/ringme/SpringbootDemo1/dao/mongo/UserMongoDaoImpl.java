@@ -1,4 +1,4 @@
-package com.ringme.SpringbootDemo1.dao;
+package com.ringme.SpringbootDemo1.dao.mongo;
 
 import com.ringme.SpringbootDemo1.entity.mongoDb.UserMongo;
 import org.springframework.beans.factory.annotation.Autowired;
