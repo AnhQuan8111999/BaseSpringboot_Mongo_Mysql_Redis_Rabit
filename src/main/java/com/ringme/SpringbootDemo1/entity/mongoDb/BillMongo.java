@@ -6,23 +6,20 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.Field;
+
+import java.util.List;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Document(collection = "product")
-public class ProductMongo {
+@Document(collection = "bill")
+public class BillMongo {
+
     @Id
     @Nullable
     private String id;
 
-    @Field(value="nameProduct")
-    private String nameProduct;
+    private UserMongo userMongo;
 
-    @Field(value="quantityProduct")
-    private long quantityProduct;
-
-    @Field(value="price")
-    private double price;
+    private List<ProductMongo>  productMongos;
 }

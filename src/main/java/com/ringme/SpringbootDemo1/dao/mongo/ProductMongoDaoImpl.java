@@ -25,7 +25,8 @@ public class ProductMongoDaoImpl implements ProductMongoDao{
 
     @Override
     public void createProduct(ProductMongo productMongo) {
-        mongoTemplate.save(productMongo,"product");
+
+        mongoTemplate.insert(productMongo,"product");
     }
 
     @Override
@@ -34,22 +35,27 @@ public class ProductMongoDaoImpl implements ProductMongoDao{
     }
 
     @Override
-    public void DeleteProduct(String idProduct) {
-        ProductMongo productMongo=mongoTemplate.findById(idProduct,ProductMongo.class,"product");
+    public void DeleteProduct(String id) {
+        ProductMongo productMongo=mongoTemplate.findById(id,ProductMongo.class,"product");
         mongoTemplate.remove(productMongo,"product");
     }
 
     @Override
-    public ProductMongo getById(String idProduct) {
-        ProductMongo productMongo=mongoTemplate.findById(idProduct,ProductMongo.class,"product");
+    public ProductMongo getById(String id) {
+        ProductMongo productMongo=mongoTemplate.findById(id,ProductMongo.class,"product");
         return productMongo;
     }
 
     @Override
     public List<ProductMongo> getByName(String nameProduct) {
         List<ProductMongo> productMongos=new ArrayList<>();
-        Query query= new Query(Criteria.where("username").is(nameProduct));
-        productMongos=mongoTemplate.find(query,ProductMongo.class,"product");
+        Query query= new Query(Criteria.where("nameProduct").regex(nameProduct));
+
+        Query query1= new Query(Criteria.where("nameProduct").regex("^" + nameProduct) ); // find all product start = nameProduct
+
+        Query query2= new Query(Criteria.where("nameProduct").regex( nameProduct+"$") );  // find all product end = nameProduct
+
+        productMongos=mongoTemplate.find(query2,ProductMongo.class,"product");
         return productMongos;
     }
 }

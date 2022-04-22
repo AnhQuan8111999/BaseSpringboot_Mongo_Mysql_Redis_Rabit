@@ -25,27 +25,10 @@ public class ProductMongoController {
         return new ResponseEntity<List<ProductMongo>>(productMongoList,HttpStatus.OK);
     }
 
-    @PostMapping("/add")
-    public ResponseEntity<?> addProduct(ProductMongo productMongoRq){
+    @RequestMapping(value = {"/add"}, method = {RequestMethod.POST}, produces = {"application/json;charset=utf-8"})
+    public ResponseEntity<?> addProduct(@RequestBody ProductMongo productMongoRq){
         try{
             productMongoService.createProduct(productMongoRq);
-            return new ResponseEntity<>("Create product success !", HttpStatus.OK);
-        }catch(Exception e){
-            logger.info("Fail " + e);
-            return new ResponseEntity<>("Create product UNsuccess !", HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
-    @PostMapping("/add1")
-    public ResponseEntity<?> addProduct1(@RequestParam("nameProduct") String nameProduct,
-                                         @RequestParam("quantityProduct") long quantityProduct,
-                                         @RequestParam("price") Double price){
-        ProductMongo productMongo=new ProductMongo();
-        productMongo.setNameProduct(nameProduct);
-        //productMongo.setQuantityProduct(quantityProduct);
-        //productMongo.setPrice(price);
-        try{
-            productMongoService.createProduct(productMongo);
             return new ResponseEntity<>("Create product success !", HttpStatus.OK);
         }catch(Exception e){
             logger.info("Fail " + e);
@@ -65,7 +48,7 @@ public class ProductMongoController {
     }
 
     @DeleteMapping("/delete")
-    public ResponseEntity<?> deleteProduct(String idProduct){
+    public ResponseEntity<?> deleteProduct(@RequestParam("id") String idProduct){
         ProductMongo productMongo= productMongoService.getById(idProduct);
         if(productMongo != null){
             productMongoService.DeleteProduct(idProduct);
@@ -76,13 +59,13 @@ public class ProductMongoController {
     }
 
     @GetMapping("/getById")
-    public ResponseEntity<?> getProductById(String idProduct){
-        ProductMongo productMongo = productMongoService.getById(idProduct);
+    public ResponseEntity<?> getProductById(@RequestParam("id") String id ){
+        ProductMongo productMongo = productMongoService.getById(id);
         return new ResponseEntity<ProductMongo>(productMongo,HttpStatus.OK);
     }
 
     @GetMapping("/getByName")
-    public ResponseEntity<?> getProductByName(String nameProduct){
+    public ResponseEntity<?> getProductByName(@RequestParam("nameProduct") String nameProduct){
         List<ProductMongo> productMongos =productMongoService.getByName(nameProduct);
         return new ResponseEntity<List<ProductMongo>>(productMongos,HttpStatus.OK);
     }

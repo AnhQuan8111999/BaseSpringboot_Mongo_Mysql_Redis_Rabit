@@ -23,12 +23,13 @@ public class ProductMongoServiceImpl implements ProductMongoService {
 
     @Override
     public void createProduct(ProductMongo productMongo) {
+            logger.info("Product:"+ productMongo);
             productMongoDao.createProduct(productMongo);
     }
 
     @Override
     public void updateProduct(ProductMongo productMongoRq) {
-        ProductMongo productMongo = productMongoDao.getById(productMongoRq.getIdProduct());
+        ProductMongo productMongo = productMongoDao.getById(productMongoRq.getId());
         if (productMongo != null) {
             productMongo.setNameProduct(productMongoRq.getNameProduct());
             productMongo.setQuantityProduct(productMongoRq.getQuantityProduct());
@@ -45,8 +46,8 @@ public class ProductMongoServiceImpl implements ProductMongoService {
     }
 
     @Override
-    public ProductMongo getById(String idProduct) {
-        ProductMongo productMongo = productMongoDao.getById(idProduct);
+    public ProductMongo getById(String id) {
+        ProductMongo productMongo = productMongoDao.getById(id);
         return productMongo;
     }
 

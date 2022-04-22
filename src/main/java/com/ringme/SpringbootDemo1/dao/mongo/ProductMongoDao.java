@@ -11,9 +11,9 @@ public interface ProductMongoDao {
 
     void updateProduct(ProductMongo productMongo);
 
-    void DeleteProduct (String idProduct);
+    void DeleteProduct (String id);
 
-    ProductMongo getById (String idProduct);
+    ProductMongo getById (String id);
 
     List<ProductMongo> getByName(String nameProduct);
 }
